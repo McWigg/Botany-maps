@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
         #map {
-            width: 1378px;
+            width: 910px;
             height: 794px;
         }
         </style>
@@ -41,11 +41,10 @@
         <script src="data/ExistingLNCSsites_6.js"></script>
         <script src="data/LocalNatureReserve_7.js"></script>
         <script src="data/Score_8.js"></script>
-        <script src="data/Simplelabels_9.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[55.7446140872621,-4.041247592481299],[55.75858347700056,-3.9996018395133692]]);
+        }).fitBounds([[55.62850157319512,-4.37345243987325],[55.82090439502135,-3.985854071446995]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -590,80 +589,6 @@
         });
         bounds_group.addLayer(layer_Score_8);
         map.addLayer(layer_Score_8);
-        function pop_Simplelabels_9(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['monad'] !== null ? autolinker.link(String(feature.properties['monad']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['1700 - 1999'] !== null ? autolinker.link(String(feature.properties['1700 - 1999']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['2000 - 2009'] !== null ? autolinker.link(String(feature.properties['2000 - 2009']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['2010 - 2019'] !== null ? autolinker.link(String(feature.properties['2010 - 2019']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['2020 -'] !== null ? autolinker.link(String(feature.properties['2020 -']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['total freq'] !== null ? autolinker.link(String(feature.properties['total freq']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['derived'] !== null ? autolinker.link(String(feature.properties['derived']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Easting'] !== null ? autolinker.link(String(feature.properties['Easting']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Northing'] !== null ? autolinker.link(String(feature.properties['Northing']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Full'] !== null ? autolinker.link(String(feature.properties['Full']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Short</th>\
-                        <td class="visible-with-data" id="Short">' + (feature.properties['Short'] !== null ? autolinker.link(String(feature.properties['Short']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['html_label'] !== null ? autolinker.link(String(feature.properties['html_label']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_Simplelabels_9_0() {
-            return {
-                fill: false,
-                stroke: false,
-                interactive: false
-            }
-        }
-        map.createPane('pane_Simplelabels_9');
-        map.getPane('pane_Simplelabels_9').style.zIndex = 409;
-        map.getPane('pane_Simplelabels_9').style['mix-blend-mode'] = 'normal';
-        var layer_Simplelabels_9 = new L.geoJson(json_Simplelabels_9, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Simplelabels_9',
-            layerName: 'layer_Simplelabels_9',
-            pane: 'pane_Simplelabels_9',
-            onEachFeature: pop_Simplelabels_9,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_Simplelabels_9_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_Simplelabels_9);
-        map.addLayer(layer_Simplelabels_9);
         setBounds();
         var i = 0;
         layer_LocalNatureReserve_7.eachLayer(function(layer) {
@@ -678,28 +603,15 @@
               addLabel(layer, i);
               i++;
         });
-        var i = 0;
-        layer_Simplelabels_9.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['Short'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Short']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Simplelabels_9'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-        resetLabels([layer_LocalNatureReserve_7,layer_Simplelabels_9]);
+        resetLabels([layer_LocalNatureReserve_7]);
         map.on("zoomend", function(){
-            resetLabels([layer_LocalNatureReserve_7,layer_Simplelabels_9]);
+            resetLabels([layer_LocalNatureReserve_7]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_LocalNatureReserve_7,layer_Simplelabels_9]);
+            resetLabels([layer_LocalNatureReserve_7]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_LocalNatureReserve_7,layer_Simplelabels_9]);
+            resetLabels([layer_LocalNatureReserve_7]);
         });
         </script>
     </body>
